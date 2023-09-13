@@ -1,5 +1,5 @@
 """
-    Event system for python
+    Event system
 
     Credits to: timofurrer
     Github: https://github.com/timofurrer
