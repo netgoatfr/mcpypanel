@@ -3,7 +3,7 @@ from mcpypanel import *
 import sys
 
 class Panel:
-	def __init__(self,args):pass
+	def __init__(self,args):pass;pass
 
 
 def main(*args):
