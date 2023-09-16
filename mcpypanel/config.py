@@ -3,18 +3,18 @@ import os
 from yaml import load, dump
 
 class ConfFile:
-	def __init__(self,parent):
-		self.parent = parent
+    def __init__(self,parent):
+        self.parent = parent
         self._datas = {}
         self._file = parent._DIR+"config.yaml"
         self.log = self.parent.log.get_child("config")
         self.load()
     
     def load(self):
-    	if not os.path.exists(self._file):
-    		self.log.fatal("Config file not found! Aborting startup.")
-    		self.parent._abort_startup = True
-    		return
+        if not os.path.exists(self._file):
+            self.log.fatal("Config file not found! Aborting startup.")
+            self.parent._abort_startup = True
+            return
         with open(self.file) as f:
             self._datas = load(f)
     def save(self):

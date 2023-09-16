@@ -39,7 +39,7 @@ class Logger:
         self.lock.release()
     def debug(self,txt):
         self.lock.acquire()
-        if self.colored_output:if self.colored_output:print(Fore.LIGHTBLUE_EX+Style.BRIGHT+"["+self._time+"]"+" ["+self.master+"] [DEBUG]: "+txt+Style.RESET_ALL)
+        if self.colored_output:print(Fore.LIGHTBLUE_EX+Style.BRIGHT+"["+self._time+"]"+" ["+self.master+"] [DEBUG]: "+txt+Style.RESET_ALL)
         else:print("["+self._time+"]"+" ["+self.master+"] [DEBUG]: "+txt)
 
         self.lock.release()
