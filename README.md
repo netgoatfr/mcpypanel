@@ -4,3 +4,7 @@ It is being coded with a linux machine.
 
 It's just the begining of this sooo...
 It is not working for the moment.
+
+Changelog:
+   - 23/09/2023 08:43 
+	Update README.md
