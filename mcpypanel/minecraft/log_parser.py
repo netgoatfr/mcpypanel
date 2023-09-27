@@ -64,7 +64,7 @@ class LogWatcher:
 					if i not in self._last_lines:
 						line = self.parse(i)
 						if line is not None:
-							self.parent.events.trigger("minecraft.log.newline",line)
+							self.parent.events.trigger("minecraft.log.newline."+line.type,line)
 		except FileNotFoundError:
 			return
 	def parse(self,raw):
