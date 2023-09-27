@@ -60,14 +60,19 @@ class Panel:
         self.run()
 
     def run(self):
-        #if not self._console_or_gui
+        
         print("#"*self._banner_size[0])
         print(self._banner)
         print("#"*self._banner_size[0])
+        ###########################################
+        
         
         self.log.info("Welcome to McPyPanel! Starting...")
         
         if self.config["dashbord"]["autorun"]:
             self.log.info("Auto-starting the web-based dashboard... (you can disable it the config)")
             self.dashboard = Dashboard(self)
+            
+        # ...
+        
             
