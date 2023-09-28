@@ -11,7 +11,7 @@ planned features.
    - [ ] Web Control
    - [ ] Console Control
 
- - [-]  Library
+ - [ ]  Library
    - [x] Logging
    - [ ] Storing (Database)
    - [x] Config
