@@ -19,7 +19,7 @@ planned features.
    - [ ] Screen / tmux library
 
 
- - [o] Setup Wizard
+ - [ ] Setup Wizard
 
  - [ ]  Proxy
    - [ ] Custom Plugin Host
@@ -27,8 +27,8 @@ planned features.
    - [ ] FireWall config?
 
 
- - [ ] Server #Feat
-   - [o] Log Watching
+ - [ ] Server
+   - [x] Log Watching
    - [ ] Player Cache (UUID, playername, time, ect)
    - [ ] Auto config (R and W)
    - [ ] FireWall config?
