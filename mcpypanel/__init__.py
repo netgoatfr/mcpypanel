@@ -54,13 +54,12 @@ class Panel:
 
         self.events = Events()
 
-        #self._console_or_gui = self.config["use_gui"]
-        self._dashboard_address = self.config["dashbord"]["address"]
         self.dashboard = None
+        self.remote_controle = None
         self.run()
 
     def run(self):
-        
+        ###########################################
         print("#"*self._banner_size[0])
         print(self._banner)
         print("#"*self._banner_size[0])
@@ -72,6 +71,9 @@ class Panel:
         if self.config["dashbord"]["autorun"]:
             self.log.info("Auto-starting the web-based dashboard... (you can disable it the config)")
             self.dashboard = Dashboard(self)
+        if self.config["remotecontrol"]["autorun"]:
+            self.log.info("Auto-starting the remote control... (you can disable it the config)")
+            self.remote_control = RemoteControl(self)
             
         # ...
         
