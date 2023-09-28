@@ -3,18 +3,15 @@
 Here is the list of all features and
 planned features.
 
-### Todo: [ ]
-### In Progress: [o] 
-### Done: [x]
+### Todo:
 
-### List:
- -  [ ]  Core Features
-   -  [ ] Grade System
-   -  [ ] Remote Control
-   -  [ ] Web Control
-   -  [ ] Console Control
+ - [ ]  Core Features
+   - [ ] Grade System
+   - [ ] Remote Control
+   - [ ] Web Control
+   - [ ] Console Control
 
- -  [ ]  Library
+ - [ ]  Library
    - [x] Logging
    - [ ] Storing (Database)
    - [x] Config
@@ -22,15 +19,15 @@ planned features.
    - [ ] Screen / tmux library
 
 
- -  [o] Setup Wizard
+ - [o] Setup Wizard
 
- -  [ ]  Proxy
+ - [ ]  Proxy
    - [ ] Custom Plugin Host
    - [ ] Auto Config (R and W)
    - [ ] FireWall config?
 
 
- -  [ ] Server #Feat
+ - [ ] Server #Feat
    - [o] Log Watching
    - [ ] Player Cache (UUID, playername, time, ect)
    - [ ] Auto config (R and W)
