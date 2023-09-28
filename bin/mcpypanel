@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-from wrapper import Wrapper
+from mcpypanel import Panel
 
 if __name__ == "__main__":
-    wrapper = Wrapper()
-    wrapper.start()
+    panel = Panel()
+    sys.exit(panel._return_code)
