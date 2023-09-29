@@ -12,6 +12,8 @@ from .wizard import Wizard
 from .events import Events
 from .console import Console
 from .dashboard import Dashboard
+from .minecraft.proxy import *
+from .minecraft.server import *
 from .__version__ import *
 import sys
 import os
@@ -74,7 +76,42 @@ class Panel:
         if self.config["remotecontrol"]["autorun"]:
             self.log.info("Auto-starting the remote control... (you can disable it the config)")
             self.remote_control = RemoteControl(self)
-            
+
+        if self.config["minecraft"]["with_proxy"]:
+            self._with_proxy = True
+            self.proxy = Proxy(self)
+            if not self._proxy._found:
+                self.log.fatal("Proxy not found. Aborting startup.")
+                self._return_code = 1
+                return
+            self.log.info("The proxy and all the servers are loaded!")
+        else:
+            self._with_proxy = False
+            self.server = Server(self,"./")
+            if not self._server._found:
+                self.log.fatal("Server not found. Aborting startup.")
+                self._return_code = 1
+                return
+            self.log.info("Server Loaded")
+
+        if self._with_proxy:
+            self._autorun_list = self.config["minecraft"]["autorun"]
+            self._autorun_proxy = self.config["minecraft"]["autorun_proxy"]
+            if self._autorun_proxy:
+                self.log.info("Auto-starting the proxy...")
+        
+            for serv_name in self._autorun_list:
+                server = self.proxy.get_server(serv_name)
+                if not server:
+                    self.log.error(f"Server \"{server_name}\" not found. It is being ignored.")
+                    continue
+                else:
+                    self.log.info("Auto-starting server \"{server_name}\"...")
+                    server.start()
+        else:
+            if self.config["minecraft"]["server_autorun"]:
+                self.log.info("Auto-starting the server ...")
+                self.server.start()
         # ...
         
             

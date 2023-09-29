@@ -5,19 +5,13 @@ import time
 import copy
 import traceback
 import shutil
-
+from .logger import Logger
 # This version of Storify has been updated to
 # remove JSON completely and add Python 3.x support.
 
-class DummyLogger:
-	def info(self): pass
-	def debug(self): pass
-	def error(self): pass
-	def warning(self): pass
-	def traceback(self): pass
 
 class Storify:
-	def __init__(self, root="data", log=DummyLogger()):
+	def __init__(self, root="data", log=Logger("Storify")):
 		self.root = root
 		self.databases = []
 
