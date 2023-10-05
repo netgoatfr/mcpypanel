@@ -1,7 +1,8 @@
 import os
-
 from yaml import load, dump
 
+class Empty:
+    pass
 class ConfFile:
     def __init__(self,parent):
         self.parent = parent
@@ -15,29 +16,31 @@ class ConfFile:
             self.log.fatal("Config file not found! Aborting startup.")
             self.parent._abort_startup = True
             return
-        with open(self.file) as f:
+        with open(self._file) as f:
             self._datas = load(f)
     def save(self):
-        with open(self.file,'w') as f:
+        with open(self._file,'w') as f:
             f.write(dump(self._datas))
     
     def __getitem__(self, index):
         if not (type(index) in (str, bytes)):
             raise Exception("a str/bytes must be passed")
-        return self.datas[index]
+        return self._datas.get(index,Empty())
     def __setitem__(self, index, value):
         if not (type(index) in (str, bytes)):
             raise Exception("a str/bytes must be passed")
-        self.datas[index] = value
+        if value is None:
+            self._datas[index] = Empty()
+        self._datas[index] = value
         return self.data[index]
     def __delattr__(self, index):
         if not (type(index) in (str, bytes)):
             raise Exception("a str/bytes must be passed")
-        del self.datas[index]
+        del self._datas[index]
     def __delitem__(self, index):
         if not (type(index) in (str, bytes)):
             raise Exception("a str/bytes must be passed")
-        del self.datas[index]
+        del self._datas[index]
     def __iter__(self):
-        for i in self.datas:
+        for i in self._datas:
             yield i

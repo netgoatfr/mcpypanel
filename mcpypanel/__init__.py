@@ -15,6 +15,7 @@ from .dashboard import Dashboard
 from .minecraft.proxy import *
 from .minecraft.server import *
 from .__version__ import *
+import libtmux
 import sys
 import os
 
@@ -58,6 +59,9 @@ class Panel:
 
         self.dashboard = None
         self.remote_controle = None
+        
+        self.tmux_serv = libtmux.Server("mcpypanel",color=True)
+        
         self.run()
 
     def run(self):
