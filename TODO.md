@@ -30,7 +30,7 @@ planned features.
    - [x] Screen / tmux library
 
  - [ ] Plugin API (Customise your server with no modding skills) 
- - [ ] World API (access entities, region, players of server's world) 
+ - [ ] World API (access entities, region, players of a minecraft world) 
 
 
  - [ ] Setup Wizard
