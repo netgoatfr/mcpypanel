@@ -8,7 +8,7 @@ It is being coded with a linux machine.
 
 It is not working for the moment. (I'm actively coding this masterpiece)
 
-This, if I manage to get it working, it could be really useful for everyone, from just people who want a server to big server owner, with all this features. 
+This, if I manage to get it working, could be really useful for everyone, from just people who want a server to big server owner, with all of the features. 
 
 You want more infos, or request a feature: open an issue with, as a title, your request. 
 
