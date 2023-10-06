@@ -6,6 +6,7 @@ import copy
 import traceback
 import shutil
 from .logger import Logger
+
 # This version of Storify has been updated to
 # remove JSON completely and add Python 3.x support.
 
