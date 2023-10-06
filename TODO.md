@@ -3,20 +3,33 @@
 Here is the list of all features and
 planned features.
 
+
+### Requested features:
+    (Open an issue with the title "feature request" or do it in the discord) 
+    There is none of it bc nobody checked this repo
+
+
+
 ### Todo:
 
  - [ ]  Core Features
    - [ ] Grade System
-   - [ ] Remote Control
+   - [ ] Remote Control (GUI client?) 
    - [ ] Web Control
    - [ ] Console Control
+      - [ ] Use curses for nicer input
+   - [ ] Permission control 
 
  - [ ]  Library
-   - [x] Logging
-   - [ ] Storing (Database)
+   - [ ] Logging 
+     - [ ] Log rotating
+   - [x] Storing (Database)
    - [x] Config
    - [x] Events
-   - [ ] Screen / tmux library
+   - [x] Screen / tmux library
+
+ - [ ] Plugin API (Customise your server with no modding skills) 
+ - [ ] World API (access entities, region, players of server's world) 
 
 
  - [ ] Setup Wizard
@@ -32,4 +45,8 @@ planned features.
    - [ ] Player Cache (UUID, playername, time, ect)
    - [ ] Auto config (R and W)
    - [ ] FireWall config?
+   - [ ] Auto start
+   - [ ] Auto backup
+     - [ ] Backup auto delete
+     - [ ] Backup auto applied when crash
 
