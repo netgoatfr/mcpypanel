@@ -5,10 +5,9 @@ planned features.
 
 
 ### Requested features:
-    (Open an issue with the title 
-"feature request" or do it in the discord) 
+    (Open an issue with the title "feature request" or do it in the discord) 
 
-    There is none of it bc nobody checked this repo
+    There is none of it bc nobody checked this repo :[
 
 
 
