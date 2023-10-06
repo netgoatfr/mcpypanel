@@ -6,6 +6,7 @@ app = Flask(__name__)
 class Dashboard:
     def __init__(self,parent):
         app.parent = parent
+        self.thread = None
         self.run()
     def run(self):
         self.thread = threading.Thread(target=self._run)
