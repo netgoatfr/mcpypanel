@@ -16,9 +16,9 @@ This, if I manage to get it working, could be really useful for everyone, from j
 ## Features
 
 ### Features list
-[TODO.md](TODO.md)
+	Features list: [TODO.md](TODO.md) file
 ### Feature request
-	open an issue with "Feature request" as a title
+	the request a feature, open an issue with "Feature request" as a title
 	or join the discord and open a post in #features-request
 
 
