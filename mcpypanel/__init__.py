@@ -10,8 +10,8 @@ from .logger import Logger
 from .config import ConfFile
 from .wizard import Wizard
 from .events import Events
-from .console import Console
-from .dashboard import Dashboard
+from .control.console import Console
+from .control.dashboard import Dashboard
 from .minecraft.proxy import *
 from .minecraft.server import *
 from .__version__ import *

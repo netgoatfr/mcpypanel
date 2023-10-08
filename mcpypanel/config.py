@@ -29,8 +29,6 @@ class ConfFile:
     def __setitem__(self, index, value):
         if not (type(index) in (str, bytes)):
             raise Exception("a str/bytes must be passed")
-        if value is None:
-            self._datas[index] = Empty()
         self._datas[index] = value
         return self.data[index]
     def __delattr__(self, index):

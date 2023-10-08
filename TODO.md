@@ -11,16 +11,16 @@ planned features.
 
 
 
-### Todo:
+## Todo:
 
- - [ ]  Core Features
+ - [-]  Core Features
    - [ ] Grade System
    - [ ] Remote Control (GUI client?) 
    - [ ] Web Control
    - [ ] Console Control
-      - [ ] Use curses for nicer input
+     - [ ] Use curses for nicer input
    - [ ] Permission control 
-
+   
  - [ ]  Library
    - [ ] Logging 
      - [ ] Log rotating
@@ -34,6 +34,8 @@ planned features.
 
 
  - [ ] Setup Wizard
+   - [ ] Installation setup
+   - [ ] Server jar asking
 
  - [ ]  Proxy
    - [ ] Custom Plugin Host
@@ -51,3 +53,4 @@ planned features.
      - [ ] Backup auto delete
      - [ ] Backup auto applied when crash
 
+# Done
