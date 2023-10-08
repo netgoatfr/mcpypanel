@@ -18,8 +18,8 @@ This, if I manage to get it working, could be really useful for everyone, from j
 ### Features list
 Features list: [TODO.md](TODO.md) file
 ### Feature request
-To request a feature, open an issue with "Feature request" as a title
-or join the discord and open a post in #features-request
+To request a feature, open an **issue** with "Feature request" as a title
+or ==join the discord== and open a post in **#features-request**
 
 
 
@@ -30,13 +30,13 @@ To install mcpypanel and use it:
 Master branch:
 ```bash
     # install dependencies
-    1. pip install https://raw.githubusercontent.com/aGoatdev/mcpypanel/main/requirements.txt
+    pip install https://raw.githubusercontent.com/aGoatdev/mcpypanel/main/requirements.txt
 
     # Install mcpypanel
-    2. pip install https://github.com/aGoatdev/mcpypanel/archive/main.zip
+    pip install https://github.com/aGoatdev/mcpypanel/archive/main.zip
     
     # Use mcpypanel
-    3. mcpypanel
+    mcpypanel
     
 ```
     
