@@ -16,7 +16,7 @@ This, if I manage to get it working, could be really useful for everyone, from j
 ## Features
 
 ### Features list
-	[To-Do List](TODO.md)
+[TODO.md](TODO.md)
 ### Feature request
 	open an issue with "Feature request" as a title
 	or join the discord and open a post in #features-request
