@@ -30,13 +30,13 @@ To install mcpypanel and use it:
 Master branch:
 ```bash
     # install dependencies
-    pip install https://raw.githubusercontent.com/aGoatdev/mcpypanel/main/requirements.txt
+    1. pip install https://raw.githubusercontent.com/aGoatdev/mcpypanel/main/requirements.txt
 
     # Install mcpypanel
-    pip install https://github.com/aGoatdev/mcpypanel/archive/main.zip
+    2. pip install https://github.com/aGoatdev/mcpypanel/archive/main.zip
     
     # Use mcpypanel
-    mcpypanel
+    3. mcpypanel
     
 ```
     
