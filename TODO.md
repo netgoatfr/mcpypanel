@@ -13,7 +13,7 @@ planned features.
 
 ## Todo:
 
- - [-]  Core Features
+ - [ ]  Core Features
    - [ ] Grade System
    - [ ] Remote Control (GUI client?) 
    - [ ] Web Control
