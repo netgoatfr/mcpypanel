@@ -1,9 +1,9 @@
 # import curses
 # from curses.textpad import Textbox, rectangle
-import colorama
+from colorama import Style, Fore, Back,init
 import sys,os
 
-colorama.init()
+init()
 
 # Test of a console using curses
 
@@ -77,16 +77,89 @@ class Console:
             window = self.windows["log"]
 """   
 
+
+BANNER ="""
+_  _   ___  ____  _  _  ____   __   __ _  ____  __    
+( \/ ) / __)(  _ \( \/ )(  _ \ / _\ (  ( \(  __)(  )  
+/ \/ \( (__  ) __/ )  /  ) __//    \/    / ) _) / (_/\\
+\_)(_/ \___)(__)  (__/  (__)  \_/\_/\_)__)(____)\____/"""
+def _BANNER_SIZE():
+    max = ""
+    for i in BANNER.split("\n"):
+        if len(i) > len(max):max = i
+    return (len(max),len(BANNER.split("\n")))
+
+
+
 class Console:
-    def __init__(self,parent):
+    def __init__(self,parent,master="Console"):
         self.parent = parent
         self._commands = {}
+        self._master = master
+    
+    def _handle_command(self,inp):
+        cmd,*args = inp.split(" ")
+        if cmd not in self._commands:
+            self._print_error("Command not found.","Syntax Error")
+        _func = self._commands[cmd][0]
+        _f_args = self._commands[cmd][1]
+        _args_list = []
+        for i in _f_args:
+            _args_list.append(eval(i))
+        _func(*_args_list)
         
-    def register_command(self,func,command):
-        self._commands[command] = func
+    def _cmd_run(self):
+        self._handle_command(self.ask_input("$"))
+    
+    def _print_header(self):
+        print("\033[H\033[J",end="")
+        self._print(Fore.LIGHTGREEN_EX+"#"*(_BANNER_SIZE()[0]+4))
+        for i in range(1,_BANNER_SIZE()[1]):
+            self._print(Fore.LIGHTGREEN_EX+"# "+Fore.LIGHTMAGENTA_EX+BANNER.split("\n")[i]+Fore.LIGHTGREEN_EX+" #")
+        self._print(Fore.LIGHTGREEN_EX+"#"*(_BANNER_SIZE()[0]+4))
+            
+    def _print(self,data):
+        print(data+Style.RESET_ALL)
+    def _print_error(self,error,error_class = "Error"):
+        error = Fore.LIGHTRED_EX+error_class+": "+error
+        self._print(error)
+    
+    def ask_input(self,prompt,default=None):
+        prompt = "["+self._master+"] "+Fore.LIGHTBLUE_EX+prompt+Fore.LIGHTGREEN_EX+(" (default: "+str(default)+")" if default else "")
+        try:
+            return input(prompt+" > "+Style.RESET_ALL)
+        except KeyboardInterrupt:
+            print()
+            return None
+        except:
+            return None
+    def ask_yes_no(self,prompt,default=True):
+        prompt = "["+self._master+"] "+Fore.LIGHTBLUE_EX+prompt+Fore.LIGHTGREEN_EX+(" [Y/n]" if default else "[y/N]")
+        try:
+            data = input(prompt+" > "+Style.RESET_ALL)
+            if not data:return default
+            return data.lower()[0] == "y"
+        except KeyboardInterrupt:
+            print()
+            return None
+        except:
+            return None
+    def register_command(self,func,command,args=[]):
+        self._commands[command] = (func,args)
             
             
 if __name__ == "__main__":
     # For tests only
+    def test():
+        print("Hello")
+    def test2(args):
+        print("Hello",args)
+    def _exit():
+        exit()
     c = Console()
-    
+    c._print_header()
+    c.register_command(test,"test")
+    c.register_command(test2,"test2",["args"])
+    c.register_command(_exit,"exit")
+    while 1:
+        c._cmd_run()

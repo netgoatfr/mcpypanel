@@ -51,14 +51,14 @@ class Panel:
             self.logger.colored_output = self.config["colored_output"]
             if self.config["reset_panel"]:self._first_time = True
         if self._first_time:
-            Wizard(self).run()
+            Wizard(self)._first_time_run()
 
         ################################################################################################
 
         self.events = Events()
-
+        self.console = Console(self)
         self.dashboard = None
-        self.remote_controle = None
+        self.remote_control = None
         
         self.tmux_serv = libtmux.Server("mcpypanel",color=True)
         
