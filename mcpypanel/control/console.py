@@ -4,7 +4,8 @@ from colorama import Style, Fore, Back,init
 import sys,os
 
 init()
-
+from colorama import just_fix_windows_console
+just_fix_windows_console()
 # Test of a console using curses
 
 """
@@ -111,6 +112,8 @@ class Console:
             
     def _print(self,data):
         print(data+Style.RESET_ALL)
+    def _fancy_print(self,data):
+        self._print("["+self._master+"] "+Fore.LIGHTBLUE_EX+prompt)
     def _print_error(self,error,error_class = "Error"):
         error = Fore.LIGHTRED_EX+error_class+": "+error
         self._print(error)
