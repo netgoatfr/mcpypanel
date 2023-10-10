@@ -28,6 +28,7 @@ planned features.
    - [x] Config
    - [x] Events
    - [x] Screen / tmux library
+   - [ ] Slave/master (control from other instances) 
 
  - [ ] Plugin API (Customise your server with no modding skills) 
  - [ ] World API (access entities, region, players of a minecraft world) 
@@ -36,6 +37,7 @@ planned features.
  - [ ] Setup Wizard
    - [ ] Installation setup
    - [ ] Server jar asking
+   - [ ] Slave or master purpose
 
  - [ ]  Proxy
    - [ ] Custom Plugin Host
