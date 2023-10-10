@@ -84,10 +84,12 @@ class Console:
 
 
 class Console:
+    USED_COLORS = [Style.RESET_ALL,Fore.LIGHTMAGENTA_EX,Fore.LIGHTBLUE_EX,Fore.LIGHTGREEN_EX,Fore.LIGHTRED_EX]
     def __init__(self,parent,master="Console"):
         self.parent = parent
         self._commands = {}
         self._master = master
+        self._colored = True
     
     def _handle_command(self,inp):
         cmd,*args = inp.split(" ")
@@ -105,32 +107,43 @@ class Console:
     
     def _print_header(self):
         print("\033[H\033[J",end="")
-        self._print(Fore.LIGHTGREEN_EX+"#"*(_BANNER_SIZE()[0]+4))
-        for i in range(1,_BANNER_SIZE()[1]):
-            self._print(Fore.LIGHTGREEN_EX+"# "+Fore.LIGHTMAGENTA_EX+BANNER.split("\n")[i]+Fore.LIGHTGREEN_EX+" #")
-        self._print(Fore.LIGHTGREEN_EX+"#"*(_BANNER_SIZE()[0]+4))
+        self._print(Fore.LIGHTGREEN_EX+"#"*(self.parent._BANNER_SIZE()[0]+4))
+        for i in range(1,self.parent._BANNER_SIZE()[1]):
+            self._print(Fore.LIGHTGREEN_EX+"# "+Fore.LIGHTMAGENTA_EX+self.parent.BANNER.split("\n")[i]+Fore.LIGHTGREEN_EX+" #")
+        self._print(Fore.LIGHTGREEN_EX+"#"*(self.parent._BANNER_SIZE()[0]+4))
             
     def _print(self,data):
-        print(data+Style.RESET_ALL)
+        if self._colored:
+            print(data+Style.RESET_ALL)
+        else:
+            for i in self.USED_COLORS:
+                data = data.replace(i,"")
+            print(data)
     def _fancy_print(self,data):
-        self._print("["+self._master+"] "+Fore.LIGHTBLUE_EX+prompt)
+        self._print("["+self._master+"] "+Fore.LIGHTBLUE_EX+data)
     def _print_error(self,error,error_class = "Error"):
         error = Fore.LIGHTRED_EX+error_class+": "+error
         self._print(error)
     
     def ask_input(self,prompt,default=None):
-        prompt = "["+self._master+"] "+Fore.LIGHTBLUE_EX+prompt+Fore.LIGHTGREEN_EX+(" (default: "+str(default)+")" if default else "")
+        if self._colored:
+            prompt = "["+self._master+"] "+Fore.LIGHTBLUE_EX+prompt+Fore.LIGHTGREEN_EX+(" (default: "+str(default)+")" if default else "")
+        else:
+            prompt = "["+self._master+"] "+prompt+(" (default: "+str(default)+")" if default else "")
         try:
-            return input(prompt+" > "+Style.RESET_ALL)
+            return input(prompt+" > "+(Style.RESET_ALL if self._colored else ""))
         except KeyboardInterrupt:
             print()
             return None
         except:
             return None
     def ask_yes_no(self,prompt,default=True):
-        prompt = "["+self._master+"] "+Fore.LIGHTBLUE_EX+prompt+Fore.LIGHTGREEN_EX+(" [Y/n]" if default else "[y/N]")
+        if self._colored:
+            prompt = "["+self._master+"] "+Fore.LIGHTBLUE_EX+prompt+Fore.LIGHTGREEN_EX+(" [Y/n]" if default else "[y/N]")
+        else:
+            prompt = "["+self._master+"] "+prompt+(" [Y/n]" if default else "[y/N]")
         try:
-            data = input(prompt+" > "+Style.RESET_ALL)
+            data = input(prompt+" > "+(Style.RESET_ALL if self._colored else ""))
             if not data:return default
             return data.lower()[0] == "y"
         except KeyboardInterrupt:

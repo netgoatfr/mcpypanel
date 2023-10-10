@@ -4,7 +4,7 @@ TYPE = "alpha"
 __version__ = '.'.join(map(str, VERSION))
 __version__ += TYPE
 
-BANNER ="""
+BANNER = """
 _  _   ___  ____  _  _  ____   __   __ _  ____  __    
 ( \/ ) / __)(  _ \( \/ )(  _ \ / _\ (  ( \(  __)(  )  
 / \/ \( (__  ) __/ )  /  ) __//    \/    / ) _) / (_/\\
@@ -14,3 +14,5 @@ def _BANNER_SIZE():
     for i in BANNER.split("\n"):
         if len(i) > len(max):max = i
     return (len(max),len(BANNER.split("\n")))
+    
+__all__ = dir()
