@@ -9,7 +9,7 @@ with open('requirements.txt') as f:
 setup(
     name='McPyPanel',
     version=__version__,
-    description="A panel for minecraft servers and proxy, doc at https://github.com/aGoatdev/mcpypanel"
+    description="A panel for minecraft servers and proxy, doc at https://github.com/aGoatdev/mcpypanel",
     packages=["mcpypanel"],
     license='',
     author="aGoatdev"
