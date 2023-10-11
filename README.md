@@ -36,6 +36,8 @@ or ***join the discord*** and open a post in **#features-request**
     
     # Use mcpypanel
     mcpypanel
+    # Or if the method above dosen't work:
+    python -m mcpypanel
     
 ```
     
