@@ -29,12 +29,9 @@ or ***join the discord*** and open a post in **#features-request**
 **To install mcpypanel and use it:**
 
 ```bash
-    ### Master branch
-    
-    # install dependencies
-    pip install https://raw.githubusercontent.com/aGoatdev/mcpypanel/main/requirements.txt
+    ### Main branch
 
-    # Install mcpypanel
+    # Install mcpypanel (Dependencies are auto-installed)
     pip install https://github.com/aGoatdev/mcpypanel/archive/main.zip
     
     # Use mcpypanel
