@@ -1,7 +1,7 @@
 import sys
 from .config import ConfFile
 from .control.console import Console
-from __version__ import *
+from .__version__ import *
 
 class DummyParent:
     def __init__(self):
@@ -30,7 +30,8 @@ class Wizard:
             self.console._print_header()
             self.console._fancy_print("Ho! look how better it is!")
         else:
-            self.console._fancy_print("Haww... You're definilty missing something.")
+            self.console._print_header()
+            self.console._fancy_print("Haww... You're definitly missing something.")
         while 1:pass
         
         
