@@ -10,7 +10,8 @@ It is not working for the moment. (I'm actively coding this masterpiece)
 
 This, if I manage to get it working, could be really useful for everyone, from just people who want a server to big server owner, with all of the features. 
 
-McPyPanel is managed by the ![https://creativecommons.org/licenses/by-sa/4.0/](https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png) Liscence
+McPyPanel is managed by the ![https://creativecommons.org/licenses/by-sa/4.0/](https://licensebuttons.net/l/by-sa/3.0/80x15.png)
+Liscence
 
 
 ## Features
@@ -28,16 +29,15 @@ or ***join the discord*** and open a post in **#features-request**
 **To install mcpypanel and use it:**
 
 ```bash
-    ### Master branch
-    
-    # install dependencies
-    pip install https://raw.githubusercontent.com/aGoatdev/mcpypanel/main/requirements.txt
+    ### Main branch
 
-    # Install mcpypanel
+    # Install mcpypanel (Dependencies are auto-installed)
     pip install https://github.com/aGoatdev/mcpypanel/archive/main.zip
     
     # Use mcpypanel
     mcpypanel
+    # Or if the method above dosen't work:
+    python -m mcpypanel
     
 ```
     
