@@ -19,6 +19,8 @@ class Wizard:
 
     def _first_time_run(self):
         self.console._colored = False
+        self._console._print_header()
+        self.console._fancy_print("## McPyPznel Setup Wizard")
         self.console._fancy_print("It look like there is no configration in this directory.")
         d = self.console.ask_yes_no(f"Are you sure you want to setup McPyPanel in this directory? (for Security purpose)")
         if not d:
