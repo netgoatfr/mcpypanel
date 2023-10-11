@@ -48,6 +48,6 @@ class Wizard:
             self._abort_installation()
 
 # if __name__ == "__main__":
-w = Wizard(DummyParent())
-w._first_time_run()
+# w = Wizard(DummyParent())
+# w._first_time_run()
     
