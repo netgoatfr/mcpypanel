@@ -37,7 +37,7 @@ class Wizard:
         self.console._fancy_print("Let's get started!")
         
         self.console._fancy_print("Alright, mcpypanel's setup in this directory is done! Enjoy!")
-        
+        self._abort_installation() # Testing
         
     def _abort_installation(self):
         self.console._fancy_print("Aborting Installation.")
