@@ -2,3 +2,4 @@ flask
 msgpack
 libtmux
 pyyaml
+orjson
