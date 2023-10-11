@@ -1,6 +1,6 @@
 import sys
-from config import ConfFile
-from control.console import Console
+from .config import ConfFile
+from .control.console import Console
 from __version__ import *
 
 class DummyParent:
