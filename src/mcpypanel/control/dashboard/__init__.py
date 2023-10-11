@@ -18,6 +18,6 @@ class Dashboard:
     def index(action=""):
         return render_template("index.html")
     @app.route("/login")
-    def index(action=""):
+    def login(action=""):
         
         return render_template("login.html")
