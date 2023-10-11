@@ -10,7 +10,8 @@ It is not working for the moment. (I'm actively coding this masterpiece)
 
 This, if I manage to get it working, could be really useful for everyone, from just people who want a server to big server owner, with all of the features. 
 
-McPyPanel is managed by the ![https://creativecommons.org/licenses/by-sa/4.0/](https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png =10x5) Liscence
+McPyPanel is managed by the ![https://creativecommons.org/licenses/by-sa/4.0/](https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png =10x5)
+Liscence
 
 
 ## Features
