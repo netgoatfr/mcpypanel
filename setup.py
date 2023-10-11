@@ -11,11 +11,11 @@ setup(
     version=__version__,
     description="A panel for minecraft servers and proxy, doc at https://github.com/aGoatdev/mcpypanel",
     packages=["mcpypanel"],
-    license='',
-    author="aGoatdev"
-    author_emaik="crazytekno.py@gmail.com"
+    license='CC BY-SA',
+    author="aGoatdev",
+    author_emaik="crazytekno.py@gmail.com",
     long_description=open('README.md').read(),
-    url="https://github.com/aGoatdev/mcpypanel" # Project Url
+    url="https://github.com/aGoatdev/mcpypanel", # Project Url
     scripts=["bin/mcpypanel"], # Start Script
     install_requires=required, # Requirements
     platforms="linux",
