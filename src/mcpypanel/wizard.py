@@ -19,8 +19,8 @@ class Wizard:
 
     def _first_time_run(self):
         self.console._colored = False
-        self.console._print_header()
-        self.console._fancy_print("## McPyPznel Setup Wizard")
+        #self.console._print_header()
+        self.console._fancy_print("## McPyPanel Setup Wizard")
         self.console._fancy_print("It look like there is no configration in this directory.")
         d = self.console.ask_yes_no(f"Are you sure you want to setup McPyPanel in this directory? (for Security purpose)")
         if not d:
@@ -34,7 +34,9 @@ class Wizard:
         else:
             self.console._print_header()
             self.console._fancy_print("Haww... You're definitly missing something.")
-        while 1:pass
+        self.console._fancy_print("Let's get started!")
+        
+        self.console._fancy_print("Alright, mcpypanel's setup in this directory is done! Enjoy!")
         
         
     def _abort_installation(self):

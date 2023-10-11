@@ -60,7 +60,7 @@ class Panel:
         self.dashboard = None
         self.remote_control = None
         
-        self.tmux_serv = libtmux.Server("mcpypanel",color=True)
+        self.tmux_serv = libtmux.Server("mcpypanel",color=self.config["colored_output"])
         
         self.run()
 
