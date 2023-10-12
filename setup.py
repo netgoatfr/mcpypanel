@@ -8,6 +8,7 @@ with open('requirements.txt') as f:
 
 
 ##     packages=["mcpypanel","mcpypanel.*"],
+## Packaes are managed by the src/ directory.
 
 setup(
     name='McPyPanel',

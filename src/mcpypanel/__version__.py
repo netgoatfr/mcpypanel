@@ -9,10 +9,11 @@ _  _   ___  ____  _  _  ____   __   __ _  ____  __
 ( \/ ) / __)(  _ \( \/ )(  _ \ / _\ (  ( \(  __)(  )  
 / \/ \( (__  ) __/ )  /  ) __//    \/    / ) _) / (_/\\
 \_)(_/ \___)(__)  (__/  (__)  \_/\_/\_)__)(____)\____/"""
+
 def _BANNER_SIZE():
     max = ""
     for i in BANNER.split("\n"):
         if len(i) > len(max):max = i
-    return (len(max),len(BANNER.split("\n")))
+    return (len(max),len([x for x in BANNER.split("\n") if x]))
     
 __all__ = dir()

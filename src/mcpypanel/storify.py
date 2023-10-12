@@ -1,3 +1,9 @@
+"""
+    File storing system
+    
+    credits to: benbaptist
+    github: https://github.com/benbaptist
+"""
 import msgpack
 import os
 import threading

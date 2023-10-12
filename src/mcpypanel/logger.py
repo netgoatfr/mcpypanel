@@ -1,6 +1,6 @@
 """
         Logging system
-        credits to aGoatdev (github), me
+        credits to: aGoatdev (github), me
         discord: netgoat
 """
 
