@@ -72,7 +72,8 @@ class Server:
         
         
         
-        
+class Proxy:
+    def __init__(self,*a):pass
         
         
         
