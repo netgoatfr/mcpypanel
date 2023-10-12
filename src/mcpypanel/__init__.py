@@ -12,8 +12,7 @@ from .wizard import Wizard
 from .events import Events
 from .control.console import Console
 from .control.dashboard import Dashboard
-from .minecraft.proxy import *
-from .minecraft.server import *
+from .minecraft import *
 from .__version__ import *
 import libtmux
 import sys
