@@ -19,7 +19,7 @@ setup(
     author_email="crazytekno.py@gmail.com",
     long_description=open('README.md').read(),
     url="https://github.com/aGoatdev/mcpypanel", # Project Url
-    scripts=["bin/mcpypanel"], # Start Script
+    scripts=["bin/mcpypanel.py"], # Start Script
     install_requires=required, # Requirements
     platforms="linux",
 )
