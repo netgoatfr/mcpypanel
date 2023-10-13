@@ -118,3 +118,7 @@ class Panel:
         # ...
         
             
+def main():
+    args = sys.argv
+    p = Panel(args)
+    sys.exit(p._return_code)
