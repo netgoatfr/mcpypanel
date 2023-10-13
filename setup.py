@@ -19,7 +19,7 @@ setup(
     author_email="crazytekno.py@gmail.com",
     long_description=open('README.md').read(),
     url="https://github.com/aGoatdev/mcpypanel", # Project Url
-        entry_points={
+    entry_points={
         'console_scripts': [
             'mcpypanel = mcpypanel:main',
         ]
