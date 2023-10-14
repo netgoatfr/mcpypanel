@@ -11,7 +11,7 @@ with open('requirements.txt') as f:
 ## Packaes are managed by the src/ directory.
 print(BANNER)
 setup(
-    name='McPyPanel',
+    name='mcpypanel',
     version=__version__,
     description="A panel for minecraft servers and proxy, doc at https://github.com/aGoatdev/mcpypanel",
     license='CC BY-SA',
