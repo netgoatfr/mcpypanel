@@ -162,3 +162,6 @@ cython_debug/
 
 # Testing
 test.*
+
+# Things that got old
+old.

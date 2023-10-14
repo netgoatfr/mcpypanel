@@ -12,7 +12,7 @@ from .wizard import Wizard
 from .events import Events
 from .control.console import Console
 from .control.dashboard import Dashboard
-from .minecraft import *
+from .mc import *
 from .__version__ import *
 import libtmux
 import sys
@@ -49,6 +49,10 @@ class Panel:
             self.debug = self.config["debug"]
             self.logger.colored_output = self.config["colored_output"]
             if self.config["reset_panel"]:self._first_time = True
+        
+        print(args)
+        
+        ### Wizard
         if self._first_time:
             Wizard(self)._first_time_run()
 
@@ -56,8 +60,8 @@ class Panel:
 
         self.events = Events()
         self.console = Console(self)
-        self.dashboard = None
-        self.remote_control = None
+        self.dashboard = Dashboard(self)
+        self.remote_control = RemoteControl(self)
         
         self.tmux_serv = libtmux.Server("mcpypanel",color=self.config["colored_output"])
         
@@ -75,10 +79,10 @@ class Panel:
         
         if self.config["dashbord"]["autorun"]:
             self.log.info("Auto-starting the web-based dashboard... (you can disable it the config)")
-            self.dashboard = Dashboard(self)
+            self.dashboard.run()
         if self.config["remotecontrol"]["autorun"]:
             self.log.info("Auto-starting the remote control... (you can disable it the config)")
-            self.remote_control = RemoteControl(self)
+            self.remote_control.run()
 
         if self.config["minecraft"]["with_proxy"]:
             self._with_proxy = True
