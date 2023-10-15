@@ -4,18 +4,22 @@ from yaml import load, dump
 class Empty:
     pass
 class ConfFile:
-    def __init__(self,parent):
+    def __init__(self,parent,create=False):
         self.parent = parent
         self._datas = {}
+        self._create=create
         self._file = parent._DIR+"config.yaml"
         self.log = self.parent.log.get_child("config")
         self.load()
     
     def load(self):
-        if not os.path.exists(self._file):
+        if not os.path.exists(self._file) and not self._create:
             self.log.fatal("Config file not found! Aborting startup.")
             self.parent._abort_startup = True
             return
+        elif  not os.path.exists(self._file) and self._create:
+            self._save()
+            
         with open(self._file) as f:
             self._datas = load(f)
     def save(self):

@@ -106,7 +106,7 @@ class Console:
         self._handle_command(self.ask_input("$"))
     
     def _print_header(self):
-        print("\033[H\033[J",end="")
+        if self._colored:print("\033[H\033[J",end="")
         self._print(Fore.LIGHTGREEN_EX+"#"*(self.parent._BANNER_SIZE()[0]+4))
         for i in range(1,self.parent._BANNER_SIZE()[1]+1):
             self._print(Fore.LIGHTGREEN_EX+"# "+Fore.LIGHTMAGENTA_EX+self.parent.BANNER.split("\n")[i]+Fore.LIGHTGREEN_EX+" #")
@@ -131,7 +131,7 @@ class Console:
         else:
             prompt = "["+self._master+"] "+prompt+(" (default: "+str(default)+")" if default else "")
         try:
-            return input(prompt+" > "+(Style.RESET_ALL if self._colored else ""))
+            return input(prompt+" > "+(Style.RESET_ALL if self._colored else "")) or default
         except KeyboardInterrupt:
             print()
             return None
