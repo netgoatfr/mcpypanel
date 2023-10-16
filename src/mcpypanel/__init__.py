@@ -53,8 +53,9 @@ class Panel:
         print(args)
         
         ### Wizard
+        self.wizard = Wizard(self)
         if self._first_time:
-            Wizard(self)._first_time_run()
+            self.wizard._first_time_run()
 
         ################################################################################################
 
