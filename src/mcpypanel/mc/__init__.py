@@ -13,9 +13,9 @@ class Player:
         self.nbt = nbtlib.load(self.path)
     @property
     def pos(self):
+        self._refresh()
         return (float(self.nbt["Pos"][0]),float(self.nbt["Pos"][1]),float(self.nbt["Pos"][2]))
-    @pos.setter
-    def pos(self,*,x=None,y=None,z=None):
+    def set_pos(self,*,x=None,y=None,z=None):
         final_pos = (x if x is not None else self.nbt["Pos"][0],y if y is not None else self.nbt["Pos"][1],z if z is not None else self.nbt["Pos"][2])
         self.nbt["Pos"] = final_pos
         self.nbt.save()
@@ -41,7 +41,8 @@ class World:
             if e == ".dat":
                 if p not in self.players:
                     u = uuid.UUID(p)
-                    self.players.append(Player(self.path,u))
+                    p = Player(self.path,u)
+                    self.players[p.playername] = p
         
         
         
@@ -62,10 +63,15 @@ class Server:
         self.running = True
     def start(self):
         if self.parent.tmux_serv.has_session("server."+self.servername):
-            self.log.info("Server is already running!")
+            self.log.error("Server is already running!")
             return
         self.session = self.parent.tmux_serv.new_session("server."+self.servername)
         self.session.cmd("java -jar "+self.parent.config["per-server-java-args"] or ""+" "+self.jar_path)
+    def stop(self):
+        if not self.parent.tmux_serv.has_session("server."+self.servername):
+            self.log.eror("Server is not running!")
+            return
+        self.session.send_keys('"@" ENTER "stop"',literal=False)
         
         
             
