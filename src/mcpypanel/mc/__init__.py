@@ -2,6 +2,7 @@ import uuid
 import nbtlib
 import time
 import os
+import mcrcon
 
 class Player:
     def __init__(self,path,d):
@@ -29,6 +30,11 @@ class World:
         
     def _refresh(self):
         self.nbt = nbtlib.load(self.path+"level.dat")
+    def _refresh_all_players(self):
+        """
+        Can be laggy, depend of the number of player
+        """
+        self._check_players()
         for player in self.players:
             player._refresh()
     def _get_player(self,uuid_or_playername):
@@ -40,7 +46,10 @@ class World:
             p,e = os.path.splitext(i)
             if e == ".dat":
                 if p not in self.players:
-                    u = uuid.UUID(p)
+                    try:
+                        u = uuid.UUID(p)
+                    except:
+                        continue
                     p = Player(self.path,u)
                     self.players[p.playername] = p
         
@@ -61,6 +70,7 @@ class Server:
             self.world = World(self.path,"world")
         self._found = True
         self.running = True
+        self.rcon = mcrcon.MCRcon(self.parent.config["servers"][servername]["ip"],self.parent.config["servers"][servername]["port"],self.parent.config["servers"][servername]["rcon-password"])
     def start(self):
         if self.parent.tmux_serv.has_session("server."+self.servername):
             self.log.error("Server is already running!")
@@ -71,9 +81,16 @@ class Server:
         if not self.parent.tmux_serv.has_session("server."+self.servername):
             self.log.eror("Server is not running!")
             return
-        self.session.send_keys('"@" ENTER "stop"',literal=False)
-        
-        
+        with self.rcon:
+            if self.parent.config["servers"]["warn-before-stop"]:
+                self.rcon.command("") # TO-Do
+                sleep(5)
+            self.rcon.command("stop")
+    def command(self,cmd):
+        if not self.parent.tmux_serv.has_session("server."+self.servername):
+            self.log.eror("Server is not running!")
+            return 
+        return self.rcon.command(cmd)      
             
         
         
