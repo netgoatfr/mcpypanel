@@ -3,3 +3,4 @@ msgpack
 libtmux
 pyyaml
 orjson
+colorama
