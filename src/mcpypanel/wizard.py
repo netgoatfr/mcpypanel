@@ -54,7 +54,7 @@ class Wizard:
 
 
         
-        d = self.console.ask_yes_no("Do you allow McPyPanel to use colours in the console ?")
+        d = self.console.ask_yes_no("Do you allow McPyPanel to use colors in the console ?")
         self._check_aborting_from_input(d)
         if d:
             self.console._colored = True
@@ -66,21 +66,24 @@ class Wizard:
         self.console._fancy_print("Let's get started!")
         
         #######################################
-        self.consosle._fancy_print("At any time you can press Ctrl+C to abort the installation.")
+        time.sleep(1)
+        self.console._fancy_print("At any time you can press Ctrl+C to abort the installation.")
         self.console._fancy_print("Everything that you set here can be changed in the app or by opening the file \"config.yaml\" (Not recomended)")
         self.console._fancy_print("Ask on the McPyPanel's discord server if you need anything.")
-        time.sleep(1)
+        time.sleep(2)
         ############Real Setup#################
 
         
-        is_master = self._check_aborting_from_input(self.console.ask_input("Do you want to use this mcpypanel instance as a (1) master or a (2) slave ? ",default="1"))[0] == 1        
+        is_master = self._check_aborting_from_input(self.console.ask_input("Do you want to use this mcpypanel instance as a (1) master or a (2) slave ? ",default="1"))[0] == "1"        
         self.config["is_master"] = is_master
         
         dashboard = self._check_aborting_from_input(self.console.ask_yes_no("Do you want to use the web-based interface (dashboard) ?"))
         self.config["allow_dashboard"] = dashboard
-        remote = self._check_aborting_from_input(self.console.ask_yes_no("Do you allow this instance to be able to be remote controlled (Mainly GUI Client) ?"))
-        self.config["allow_remote_control"] = dashboard
-
+        if is_master:
+            remote = self._check_aborting_from_input(self.console.ask_yes_no("Do you allow this instance to be able to be remote controlled (Mainly GUI Client) ?"))
+        else:
+            remote=True
+        self.config["allow_remote_control"] = remote
 
         
         while 1:
@@ -88,14 +91,14 @@ class Wizard:
             if len(password) < 8:
                 self.console._print_error("PasswordError","Password must be at least 8 char long.")
                 continue
-            retyped_password = self._check_aborting_from_input(self.console.ask_input("Please retype the password for the admin account"))
+            retyped_password = self._check_aborting_from_input(self.console.ask_input("Please retype the password"))
             if retyped_password == password:
                 break
             self.console._print_error("PasswordError","The Passwords dosen't match")
 
         
         self.console._fancy_print("Valid password.")
-        pass_hash = hashlib.md5(password).hexdigest() # Hash the password
+        pass_hash = hashlib.md5(password.encode()).hexdigest() # Hash the password
         self.config["accounts"] = dict(admin=dict(perms="admin",password=pass_hash))
         
         
@@ -104,7 +107,7 @@ class Wizard:
         
         
         #######################################      
-        
+        self.console._fancy_print(str(self.config))
         self.console._fancy_print("Alright, mcpypanel's setup in this directory is done! Enjoy!")
         self._abort_installation() # Testing
 
@@ -135,6 +138,8 @@ if TEST_MODE:
     w = Wizard(DummyParent())
     try:
         w._first_time_run()
+    except Exception as e:
+        print(e.__class__.__name__,":",e)
     finally:
-        time.sleep(3)
+        input()
     

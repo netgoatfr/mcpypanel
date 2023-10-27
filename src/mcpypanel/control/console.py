@@ -121,9 +121,9 @@ class Console:
             print(data)
     def _fancy_print(self,data):
         self._print("["+self._master+"] "+Fore.LIGHTBLUE_EX+data)
-    def _print_error(self,error,error_class = "Error"):
-        error = Fore.LIGHTRED_EX+error_class+": "+error
-        self._print(error)
+    def _print_error(self,error_class="Error",error=""):
+        error = Fore.LIGHTRED_EX+error_class+(": "+error) if error else ""
+        self._print("["+self._master+"] "+error)
     
     def ask_input(self,prompt,default=None):
         if self._colored:

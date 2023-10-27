@@ -5,10 +5,12 @@ import os
 import mcrcon
 
 class Player:
-    def __init__(self,path,d):
-        self.path = path+"playerdata/"+str(d)+".dat"
+    def __init__(self,path,id,world):
+        self.path = path+"playerdata/"+str(id)+".dat"
         self.nbt = nbtlib.load(self.path)
-        self.uuid = d
+        self.uuid = id
+        self.world = world
+        self.rcon = self.world.server.rcon
         self.playername = self.nbt["bukkit"]["lastKnownName"]
     def _refresh(self):
         self.nbt = nbtlib.load(self.path)
@@ -16,14 +18,14 @@ class Player:
     def pos(self):
         self._refresh()
         return (float(self.nbt["Pos"][0]),float(self.nbt["Pos"][1]),float(self.nbt["Pos"][2]))
-    def set_pos(self,*,x=None,y=None,z=None):
-        final_pos = (x if x is not None else self.nbt["Pos"][0],y if y is not None else self.nbt["Pos"][1],z if z is not None else self.nbt["Pos"][2])
-        self.nbt["Pos"] = final_pos
-        self.nbt.save()
+    def set_pos(self,*,x,y,z):
+        with self.rcon:
+            rcon.command("tp "+self.playername+str(x)+" "+str(y)+" "+str(z))
         
 class World:
-    def __init__(self,dir,world_name):
+    def __init__(self,dir,world_name,server):
         self.path = dir+"/"+world_name+"/"
+        self.server = server
         self.nbt = nbtlib.load(self.path+"level.dat")
         self.players = []
         self._check_players()
@@ -50,7 +52,7 @@ class World:
                         u = uuid.UUID(p)
                     except:
                         continue
-                    p = Player(self.path,u)
+                    p = Player(self.path,u,self)
                     self.players[p.playername] = p
         
         
@@ -66,11 +68,11 @@ class Server:
             self._found = False
             return
         self._ever_started = os.path.exists(self.path+"/"+"server.properties")
+        self.rcon = mcrcon.MCRcon(self.parent.config["servers"][servername]["ip"],self.parent.config["servers"][servername]["rcon_port"],self.parent.config["servers"][servername]["rcon-password"])
         if self.self._ever_started:
-            self.world = World(self.path,"world")
+            self.world = World(self.path,"world",self)
         self._found = True
         self.running = True
-        self.rcon = mcrcon.MCRcon(self.parent.config["servers"][servername]["ip"],self.parent.config["servers"][servername]["port"],self.parent.config["servers"][servername]["rcon-password"])
     def start(self):
         if self.parent.tmux_serv.has_session("server."+self.servername):
             self.log.error("Server is already running!")
@@ -83,9 +85,9 @@ class Server:
             return
         with self.rcon:
             if self.parent.config["servers"]["warn-before-stop"]:
-                self.rcon.command("") # TO-Do
+                self.command("") # TO-Do
                 sleep(5)
-            self.rcon.command("stop")
+            self.command("stop")
     def command(self,cmd):
         if not self.parent.tmux_serv.has_session("server."+self.servername):
             self.log.eror("Server is not running!")
