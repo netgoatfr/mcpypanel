@@ -4,3 +4,4 @@ libtmux
 pyyaml
 orjson
 colorama
+nbtlib
