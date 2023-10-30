@@ -8,8 +8,6 @@ It is being coded with a linux machine.
 
 It is not working for the moment. (I'm actively coding this masterpiece)
 
-This, if I manage to get it working, could be really useful for everyone, from just people who want a server to big server owner, with all of the features. 
-
 McPyPanel is managed by the ![https://creativecommons.org/licenses/by-sa/4.0/](https://licensebuttons.net/l/by-sa/3.0/80x15.png)
 Liscence
 
@@ -28,18 +26,15 @@ or ***join the discord*** and open a post in **#features-request**
 
 **To install mcpypanel and use it:**
 
+### Main branch
 ```bash
-    ### Main branch
-
     # Install mcpypanel (Dependencies are auto-installed)
     pip install https://github.com/aGoatdev/mcpypanel/archive/main.zip
-    
-    # Use mcpypanel
-    mcpypanel
 
-    # Or if the method above dosen't work(path may not be set):
+    # If the command above warn you of a path error, run this:
     export PATH=$PATH:~/.local/bin 
-    # And run mcpypanel
+
+    # Use mcpypanel
     mcpypanel
 ```
     

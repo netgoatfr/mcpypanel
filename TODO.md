@@ -6,7 +6,6 @@ planned features.
 
 ### Requested features:
     (Open an issue with the title "feature request" or do it in the discord) 
-
     There is none of it bc nobody checked this repo :[
 
 
@@ -47,7 +46,7 @@ planned features.
 
  - [ ] Server
    - [x] Log Watching
-   - [ ] Player Cache (UUID, playername, time, ect)
+   - [ ] Player Caching (UUID, playername, time, ect)
    - [ ] Auto config (R and W)
    - [ ] FireWall config?
    - [ ] Auto start

@@ -8,8 +8,7 @@ with open('requirements.txt') as f:
 
 
 ##     packages=["mcpypanel","mcpypanel.*"],
-## Packaes are managed by the src/ directory.
-print(BANNER)
+## Packages are managed by the src/ directory.
 setup(
     name='mcpypanel',
     version=__version__,
@@ -27,3 +26,4 @@ setup(
     install_requires=required, # Requirements
     platforms="linux",
 )
+print(BANNER)
