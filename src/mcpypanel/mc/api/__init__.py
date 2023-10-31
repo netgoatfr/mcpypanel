@@ -4,7 +4,7 @@ import time
 import os
 import mcrcon
 
-class Player:
+class PlayerNbt:
     def __init__(self,path,id,world):
         self.path = path+"playerdata/"+str(id)+".dat"
         self.nbt = nbtlib.load(self.path)
@@ -28,9 +28,10 @@ class Player:
         
 class World:
     def __init__(self,dir,world_name,server):
-        self.path = dir+"/"+world_name+"/"
+        self.name = world_name
+        self.path = os.path.join(dir,world_name)
         self.server = server
-        self.nbt = nbtlib.load(self.path+"level.dat")
+        self.nbt = nbtlib.load(self.path+"/level.dat")
         self.players = []
         self._check_players()
         

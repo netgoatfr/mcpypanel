@@ -10,6 +10,7 @@ from .logger import Logger
 from .config import ConfFile
 from .wizard import Wizard
 from .events import Events
+from .storify import Storify
 from .control.console import Console
 from .control.dashboard import Dashboard
 from .mc import *
@@ -60,6 +61,7 @@ class Panel:
         ################################################################################################
 
         self.events = Events()
+        self.storify = Storify(log=self.logger.get_child("Storify"))
         self.console = Console(self)
         self.dashboard = Dashboard(self)
         self.remote_control = RemoteControl(self)

@@ -87,7 +87,7 @@ class LogWatcher:
 			datas["player"] = match.group(1)
 			datas["ip"] = match.group(2)
 			datas["port"] = int(match.group(3))
-			datas["entity_id"] = int(match.group(4))
+			datas["id"] = int(match.group(4))
 			datas["spawn_world"] = match.group(5)
 			datas["spawn_x"] = float(match.group(6))
 			datas["spawn_y"] = float(match.group(7))

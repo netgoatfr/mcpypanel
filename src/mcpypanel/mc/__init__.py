@@ -3,9 +3,33 @@ import nbtlib
 import time
 import os
 import mcrcon
+from .mojang import MojangApi
+from .api import *
 
 class PlayerCache:
-    def __init__(self,)
+    def __init__(self,server,datas):
+        self.api = MojangApi()
+        self.id = datas["id"]
+        self.ip = datas["ip"]
+        self.port = datas["port"]
+        self.spawn_world = datas["spawn_world"]
+        self.spawn_x = datas["spawn_x"]
+        self.spawn_y = datas["spawn_y"]
+        self.spawn_z = datas["spawn_z"]
+        self.name = datas["player"]
+        self.server = server
+        self.cache_db = self.server.parent.storify.getDB("player_cache")
+
+        try:
+            self.profile = self.api.get_profile_from_id(self.id)
+        except TypeError:
+            self.profile = None
+            self.cracked_account = True
+        else:
+            self.cracked_account = False
+        self.nbt = PlayerNbt(server.path,self.id,self.server._get_world(self.spawn_world))
+        self.cache_db[self.id] = dict(name=self.name,cracked=self.cracked_account,**datas)
+
 
 class Server:
     def __init__(self,parent,path,servername,jar_name="server"):
@@ -19,9 +43,23 @@ class Server:
         self._ever_started = os.path.exists(self.path+"/"+"server.properties")
         self.rcon = mcrcon.MCRcon(self.parent.config["servers"][servername]["ip"],self.parent.config["servers"][servername]["rcon_port"],self.parent.config["servers"][servername]["rcon-password"])
         if self.self._ever_started:
-            self.world = World(self.path,"world",self)
+            self._get_worlds()
         self._found = True
         self.running = True
+        self.players = []
+
+        @self.parent.events.on("server."+servername+".logwatch.user_logged")
+        def on_user_logged(datas):
+            self.players.append(PlayerCache())
+    def _get_worlds(self):
+        self.worlds = []
+        for folder in os.listdir(self.path):
+            if "level.dat" in os.listdir(os.path.join(self.path,folder)):
+                self.worlds.append(World(self.path,folder,self))
+    def _get_world(self,name):
+        for w in self.worlds:
+            if w.name == name:
+                return w
     def start(self):
         if self.parent.tmux_serv.has_session("server."+self.servername):
             self.log.error("Server is already running!")
@@ -41,7 +79,7 @@ class Server:
         if not self.parent.tmux_serv.has_session("server."+self.servername):
             self.log.eror("Server is not running!")
             return 
-        return self.rcon.command(cmd)      
+        return self.rcon.command(cmd)
             
         
         
