@@ -2,10 +2,19 @@
 # from curses.textpad import Textbox, rectangle
 from colorama import Style, Fore, Back,init
 import sys,os
-
+from typing import *
 init()
 from colorama import just_fix_windows_console
 just_fix_windows_console()
+
+TESTING_MODE = False
+try:
+    import .logger
+except ImportError:
+    import logger
+    TESTING_MODE = True
+
+
 # Test of a console using curses
 
 """
@@ -87,23 +96,33 @@ class Console:
     USED_COLORS = [Style.RESET_ALL,Fore.LIGHTMAGENTA_EX,Fore.LIGHTBLUE_EX,Fore.LIGHTGREEN_EX,Fore.LIGHTRED_EX]
     def __init__(self,parent,master="Console"):
         self.parent = parent
-        self._commands = {}
+        self._commands:dict[tuple[Callable,str]] = {}
         self._master = master
         self._colored = True
     
     def _handle_command(self,inp):
         cmd,*args = inp.split(" ")
+        subcmds = []
+        settings = []
+        for a in args:
+            if a.startswith("-"):
+                settings.append(a)
+            else:
+                subcmds.append(a)
+                
         if cmd not in self._commands:
             self._print_error("Command not found.","Syntax Error")
-        _func = self._commands[cmd][0]
-        _f_args = self._commands[cmd][1]
-        _args_list = []
-        for i in _f_args:
-            _args_list.append(eval(i))
-        _func(*_args_list)
+        _func = self._commands[cmd]
+        return _func(subcmds = subcmds,settings = settings)
+    
+    def _register_command(self,func,command):
+        self._commands[command] = func
         
     def _cmd_run(self):
-        self._handle_command(self.ask_input("$"))
+        try:
+            self._handle_command(self.ask_input("$"))
+        except Exception as e:
+            self._print_error(str(e.__class__.__name),e)
     
     def _print_header(self):
         if self._colored:print("\033[H\033[J",end="")
@@ -151,10 +170,29 @@ class Console:
             return None
         except:
             return None
-    def register_command(self,func,command,args=[]):
-        self._commands[command] = (func,args)
-            
-            
+
+
+class Commands:
+    def __init__(self,parent):
+        self.parent = parent
+        for i in dir(self):
+            if i.startswith("cmd"):
+                self.parent.console._register_command(getattr(self,i))
+    def  cmd_servers(sub,settings):
+        if not sub:sub = ("list",)
+        if sub[0] == "list":
+            with_infos = "-i" in settings:
+            if self.parent._with_proxy:
+                self._fancy_print("Here is a list of all the servers linked to this instance of mcpypanel:")
+                for server in self.parent.proxy.servers:
+                    self._fancy_print("  - "+server.name+(": running: "+("yes, " if server.running else "no, ")+"player count: "+str(len(server.players))) if with_infos else "")
+            else:
+                self._fancy_print("Here is the server linked to this instance of mcpypanel:")
+                server = self.parent.server
+                self._fancy_print("  - "+server.name+(": running: "+("yes, " if server.running else "no, ")+"player count: "+str(len(server.players))) if with_infos else "")
+    def _print_subcmd_not_found(self,subcmd):
+        self.console._print_error("Syntax Error",f"This subcommand ({subcmd}) was not found.")
+        
 if __name__ == "__main__":
     # For tests only
     def test():
@@ -165,8 +203,8 @@ if __name__ == "__main__":
         exit()
     c = Console()
     c._print_header()
-    c.register_command(test,"test")
-    c.register_command(test2,"test2",["args"])
-    c.register_command(_exit,"exit")
+    c._register_command(test,"test")
+    c._register_command(test2,"test2",["args"])
+    c._register_command(_exit,"exit")
     while 1:
         c._cmd_run()

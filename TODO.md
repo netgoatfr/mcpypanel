@@ -5,8 +5,7 @@ planned features.
 
 
 ### Requested features:
-    (Open an issue with the title "feature request" or do it in the discord) 
-    There is none of it bc nobody checked this repo :[
+    (Open an issue with the title "feature request" or do it in the discord)
 
 
 
@@ -54,4 +53,5 @@ planned features.
      - [ ] Backup auto delete
      - [ ] Backup auto applied when crash
 
-# Done
+## Done:
+

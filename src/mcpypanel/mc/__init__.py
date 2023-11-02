@@ -50,7 +50,8 @@ class Server:
 
         @self.parent.events.on("server."+servername+".logwatch.user_logged")
         def on_user_logged(datas):
-            self.players.append(PlayerCache())
+            self.players.append(PlayerCache(self,datas))
+            
     def _get_worlds(self):
         self.worlds = []
         for folder in os.listdir(self.path):
