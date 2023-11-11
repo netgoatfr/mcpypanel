@@ -13,7 +13,7 @@ setup(
     license='CC BY-SA',
     author="aGoatdev",
     author_email="crazytekno.py@gmail.com",
-    packages=find_packages(include=['mcpypanel', 'mcpypanel.*','mcpypanel.*.*','mcpypanel.*.*.*']),
+    packages=find_packages(include=['mcpypanel', 'mcpypanel*']),
     long_description=open('README.md').read(),
     url="https://github.com/aGoatdev/mcpypanel", # Project Url
     entry_points={
