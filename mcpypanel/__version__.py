@@ -10,13 +10,12 @@ BANNER = r"""
 / \/ \( (__  ) __/ )  /  ) __//    \/    / ) _) / (_/\
 \_)(_/ \___)(__)  (__/  (__)  \_/\_/\_)__)(____)\____/"""
 
-_BANNER_SIZE = (len(max(BANNER.split("\n"))),len([x for x in BANNER.split("\n") if x != r""]))
-    
+_BANNER_SIZE = (len(max(BANNER.split("\n"))),len([x for x in BANNER.split("\n") if x != ""]))
 __all__ = dir()
 
 if __name__ == "__main__":
     import time
     print(BANNER)
-    print(_BANNER_SIZE())
+    print(_BANNER_SIZE)
     print("Current version "+__version__)
     time.sleep(5)

@@ -178,18 +178,19 @@ class Commands:
         for i in dir(self):
             if i.startswith("cmd"):
                 self.parent.console._register_command(getattr(self,i))
-    def  cmd_servers(sub,settings):
-        if not sub:sub = ("list",)
+        self.console = self.parent.console
+    def  cmd_servers(self,sub,settings): # Sub is the sub commands
+        if not sub: sub = ("list",)
         if sub[0] == "list":
-            with_infos = "-i" in settings:
+            with_infos = "-i" in settings
             if self.parent._with_proxy:
-                self._fancy_print("Here is a list of all the servers linked to this instance of mcpypanel:")
+                self.console._fancy_print("Here is a list of all the servers linked to this instance of mcpypanel:")
                 for server in self.parent.proxy.servers:
-                    self._fancy_print("  - "+server.name+(": running: "+("yes, " if server.running else "no, ")+"player count: "+str(len(server.players))) if with_infos else "")
+                    self.console._fancy_print("  - "+server.name+(": running: "+("yes, " if server.running else "no, ")+"player count: "+str(len(server.players))) if with_infos else "")
             else:
-                self._fancy_print("Here is the server linked to this instance of mcpypanel:")
+                self.console._fancy_print("Here is the server linked to this instance of mcpypanel:")
                 server = self.parent.server
-                self._fancy_print("  - "+server.name+(": running: "+("yes, " if server.running else "no, ")+"player count: "+str(len(server.players))) if with_infos else "")
+                self.console._fancy_print("  - "+server.name+(": running: "+("yes, " if server.running else "no, ")+"player count: "+str(len(server.players))) if with_infos else "")
     def _print_subcmd_not_found(self,subcmd):
         self.console._print_error("Syntax Error",f"This subcommand ({subcmd}) was not found.")
         

@@ -21,7 +21,7 @@ class PlayerNbt:
     def set_pos(self,*,x,y,z):
         try:
             with self.rcon:
-                rcon.command("tp "+self.playername+str(x)+" "+str(y)+" "+str(z))
+                self.rcon.command("tp "+self.playername+str(x)+" "+str(y)+" "+str(z))
                 return True
         except:
             return False
@@ -31,12 +31,12 @@ class World:
         self.name = world_name
         self.path = os.path.join(dir,world_name)
         self.server = server
-        self.nbt = nbtlib.load(self.path+"/level.dat")
+        self.nbt = nbtlib.load(os.path.join(self.path,"level.dat"))
         self.players = []
         self._check_players()
         
     def _refresh(self):
-        self.nbt = nbtlib.load(self.path+"level.dat")
+        self.nbt = nbtlib.load(os.path.join(self.path,"level.dat"))
     def _refresh_all_players(self):
         """
         Can be laggy, depend of the number of player
@@ -57,6 +57,6 @@ class World:
                         u = uuid.UUID(p)
                     except:
                         continue
-                    p = Player(self.path,u,self)
+                    p = PlayerNbt(self.path,u,self)
                     self.players[p.playername] = p
 

@@ -93,6 +93,9 @@ class LogWatcher:
 			datas["spawn_y"] = float(match.group(7))
 			datas["spawn_z"] = float(match.group(8))
 			datas["type"] = LogLineTypes.USER_LOGGED
+
+		elif (match := self.style.logged_in.match(message)) is not None:
+			pass
 			
 		else:
 			datas["message"] = message

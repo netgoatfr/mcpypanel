@@ -6,9 +6,6 @@ with open("src/mcpypanel/__version__.py", "r") as f:
 with open('requirements.txt') as f:
     required = f.read().splitlines()
 
-
-##     packages=["mcpypanel","mcpypanel.*"],
-## Packages are managed by the src/ directory.
 setup(
     name='mcpypanel',
     version=__version__,
@@ -16,6 +13,7 @@ setup(
     license='CC BY-SA',
     author="aGoatdev",
     author_email="crazytekno.py@gmail.com",
+    packages=find_packages(include=['mcpypanel', 'mcpypanel.*']),
     long_description=open('README.md').read(),
     url="https://github.com/aGoatdev/mcpypanel", # Project Url
     entry_points={

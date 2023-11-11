@@ -63,6 +63,7 @@ class Panel:
         self.events = Events()
         self.storify = Storify(log=self.logger.get_child("Storify"))
         self.console = Console(self)
+        self.commands = Commands(self)
         self.dashboard = Dashboard(self)
         self.remote_control = RemoteControl(self)
         
@@ -113,7 +114,7 @@ class Panel:
             for serv_name in self._autorun_list:
                 server = self.proxy.get_server(serv_name)
                 if not server:
-                    self.log.error(f"Server \"{server_name}\" not found. It is being ignored.")
+                    self.log.error(f"Server \"{serv_name}\" not found. It is being ignored.")
                     continue
                 else:
                     self.log.info("Auto-starting server \"{server_name}\"...")
