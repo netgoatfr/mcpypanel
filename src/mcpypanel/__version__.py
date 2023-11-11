@@ -10,8 +10,7 @@ BANNER = r"""
 / \/ \( (__  ) __/ )  /  ) __//    \/    / ) _) / (_/\
 \_)(_/ \___)(__)  (__/  (__)  \_/\_/\_)__)(____)\____/"""
 
-def _BANNER_SIZE():
-    return (len(max(BANNER.split("\n"))),len([x for x in BANNER.split("\n") if x != r""]))
+_BANNER_SIZE = (len(max(BANNER.split("\n"))),len([x for x in BANNER.split("\n") if x != r""]))
     
 __all__ = dir()
 

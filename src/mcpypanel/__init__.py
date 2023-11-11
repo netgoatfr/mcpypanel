@@ -35,7 +35,7 @@ class Panel:
         self._return_code = 0
         
         self.banner = BANNER
-        self._banner_size = _BANNER_SIZE()
+        self._banner_size = _BANNER_SIZE
         #################################################################################################
 
         ### SETUP
