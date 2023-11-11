@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup, Command
 
-with open("src/mcpypanel/__version__.py", "r") as f:
+with open("mcpypanel/__version__.py", "r") as f:
     exec(f.read())
     
 with open('requirements.txt') as f:
