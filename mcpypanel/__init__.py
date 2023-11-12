@@ -26,7 +26,7 @@ class Panel:
 
         self.log = Logger("Panel")
         self._BASE_DIR = os.getcwd()
-        self._DIR = self._BASE_DIR + "mcpypanel_data"
+        self._DIR = os.path.join(self._BASE_DIR,"mcpypanel_data")
         self._args = args
 
         self._first_time = False
