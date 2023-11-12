@@ -25,7 +25,7 @@ class Panel:
         ### Useful variables
 
         self.log = Logger("Panel")
-        self._BASE_DIR = os.path.split(args[0])[0]
+        self._BASE_DIR = os.get(cwd)
         self._DIR = self._BASE_DIR + "mcpypanel_data"
         self._args = args
 
