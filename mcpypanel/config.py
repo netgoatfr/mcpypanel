@@ -1,5 +1,13 @@
 import os
-from yaml import load, dump
+from yaml import _load, _dump
+try:
+    from yaml import CLoader as Loader, CDumper as Dumper
+except ImportError:
+    from yaml import Loader, Dumper
+
+load = lambda x: _load(x,Loader=Loader)
+dump = lambda x: _dump(x,Dumper=Dumper)
+
 
 class Empty:
     pass
