@@ -4,8 +4,10 @@ from colorama import Style, Fore, Back,init
 import sys,os
 from typing import *
 init()
-from colorama import just_fix_windows_console
-just_fix_windows_console()
+import platform
+if platform.system().lower() == "windows":
+    from colorama import just_fix_windows_console
+    just_fix_windows_console()
 
 
 

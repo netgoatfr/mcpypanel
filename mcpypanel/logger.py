@@ -9,8 +9,12 @@ from colorama import Fore, Back, Style, init
 import sys
 import time
 import threading
-
 init()
+
+import platform
+if platform.system().lower() == "windows":
+    from colorama import just_fix_windows_console
+    just_fix_windows_console()
 
 lock = threading.Lock()
 
