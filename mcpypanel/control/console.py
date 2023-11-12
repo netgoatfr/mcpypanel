@@ -7,12 +7,6 @@ init()
 from colorama import just_fix_windows_console
 just_fix_windows_console()
 
-TESTING_MODE = False
-try:
-    import .logger
-except ImportError:
-    import logger
-    TESTING_MODE = True
 
 
 # Test of a console using curses
