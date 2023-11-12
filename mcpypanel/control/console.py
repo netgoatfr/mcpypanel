@@ -122,10 +122,10 @@ class Console:
     
     def _print_header(self):
         if self._colored:print("\033[H\033[J",end="")
-        self._print(Fore.LIGHTGREEN_EX+"#"*(self.parent._BANNER_SIZE()[0]+4))
-        for i in range(1,self.parent._BANNER_SIZE()[1]+1):
+        self._print(Fore.LIGHTGREEN_EX+"#"*(self.parent._BANNER_SIZE[0]+4))
+        for i in range(1,self.parent._BANNER_SIZE[1]+1):
             self._print(Fore.LIGHTGREEN_EX+"# "+Fore.LIGHTMAGENTA_EX+self.parent.BANNER.split("\n")[i]+Fore.LIGHTGREEN_EX+" #")
-        self._print(Fore.LIGHTGREEN_EX+"#"*(self.parent._BANNER_SIZE()[0]+4))
+        self._print(Fore.LIGHTGREEN_EX+"#"*(self.parent._BANNER_SIZE[0]+4))
             
     def _print(self,data):
         if self._colored:
