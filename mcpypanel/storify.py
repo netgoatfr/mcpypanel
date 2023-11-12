@@ -18,6 +18,7 @@ from .logger import Logger
 
 
 class Storify:
+	save_time = 5
 	def __init__(self, root="data", log=Logger("Storify")):
 		self.root = root
 		self.databases = []
@@ -29,8 +30,6 @@ class Storify:
 
 		if not os.path.exists(os.path.join(self.root, ".backups")):
 			os.mkdir(os.path.join(self.root, ".backups"))
-            
-           self.save_time = 5
 
 	def getDB(self, name):
 		for database in self.databases:
