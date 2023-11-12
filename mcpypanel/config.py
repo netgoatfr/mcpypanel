@@ -1,5 +1,5 @@
 import os
-from yaml import _load, _dump
+from yaml import load as _load, dump as _dump
 try:
     from yaml import CLoader as Loader, CDumper as Dumper
 except ImportError:
