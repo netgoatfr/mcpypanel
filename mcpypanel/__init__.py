@@ -34,7 +34,7 @@ class Panel:
         self._abort_startup = False
         self._return_code = 0
         
-        self.banner = BANNER
+        self.BANNER = BANNER
         self._BANNER_SIZE = _BANNER_SIZE
         #################################################################################################
 
@@ -72,12 +72,7 @@ class Panel:
         self.run()
 
     def run(self):
-        ###########################################
-        print("#"*self._banner_size[0])
-        print(self._banner)
-        print("#"*self._banner_size[0])
-        ###########################################
-        
+        self.console._print_header()
         
         self.log.info("Welcome to McPyPanel! Starting...")
         
