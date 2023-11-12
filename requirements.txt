@@ -5,3 +5,4 @@ pyyaml
 orjson
 colorama
 nbtlib
+mcrcon
