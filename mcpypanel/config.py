@@ -25,7 +25,7 @@ class ConfFile:
             self.log.fatal("Config file not found! Aborting startup.")
             self.parent._abort_startup = True
             return
-        elif  not os.path.exists(self._file) and self._create:
+        elif not os.path.exists(self._file) and self._create:
             self.save()
             
         with open(self._file) as f:
