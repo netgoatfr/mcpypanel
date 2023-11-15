@@ -11,7 +11,7 @@ from .config import ConfFile
 from .wizard import Wizard
 from .events import Events
 from .storify import Storify
-from .control.console import Console
+from .control.console import Console, Commands
 from .control.dashboard import Dashboard
 from .mc import *
 from .__version__ import *
