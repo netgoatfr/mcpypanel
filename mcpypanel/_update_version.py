@@ -1,6 +1,6 @@
 """ 
 This is random junk, just here to help me track of the version as i intensly test mcpypanel.
-Don't mind it.
+Don't mind it and don't use it.
 """
 from __version__ import VERSION
 data = open("mcpypanel/__version__.py").read()

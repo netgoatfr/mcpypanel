@@ -1,4 +1,4 @@
-VERSION = (0, 0, 0, 2)
+VERSION = (0, 0, 0, 1)
 TYPE = "alpha"
 
 __version__ = '.'.join(map(str, VERSION))
@@ -19,3 +19,4 @@ if __name__ == "__main__":
     print(_BANNER_SIZE)
     print("Current version "+__version__)
     time.sleep(5)
+

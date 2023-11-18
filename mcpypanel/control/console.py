@@ -9,9 +9,19 @@ if platform.system().lower() == "windows":
     from colorama import just_fix_windows_console
     just_fix_windows_console()
 
-
-
 # Test of a console using curses
+
+BANNER = r"""
+ _  _   ___  ____  _  _  ____   __   __ _  ____  __   
+( \/ ) / __)(  _ \( \/ )(  _ \ / _\ (  ( \(  __)(  )  
+/ \/ \( (__  ) __/ )  /  ) __//    \/    / ) _) / (_/\
+\_)(_/ \___)(__)  (__/  (__)  \_/\_/\_)__)(____)\____/"""
+
+_BANNER_SIZE = (len(max(BANNER.split("\n"))),len([x for x in BANNER.split("\n") if x != ""]))
+
+class DummyParent:
+    BANNER = BANNER
+    _BANNER_SIZE = _BANNER_SIZE 
 
 """
 class Console:
@@ -93,10 +103,13 @@ class Console:
     def __init__(self,parent,master="Console"):
         self.parent = parent
         self._commands:dict[tuple[Callable,str]] = {}
+        self._alias:dict[str] = {}
         self._master = master
         self._colored = True
     
     def _handle_command(self,inp):
+        if inp is None:
+            exit()
         cmd,*args = inp.split(" ")
         subcmds = []
         settings = []
@@ -106,19 +119,22 @@ class Console:
             else:
                 subcmds.append(a)
                 
-        if cmd not in self._commands:
-            self._print_error("Command not found.","Syntax Error")
+        if cmd not in self._commands :
+            self._print_error("Syntax Error",f"Command {cmd} not found.")
+            return
         _func = self._commands[cmd]
         return _func(subcmds = subcmds,settings = settings)
     
-    def _register_command(self,func,command):
+    def _register_command(self,func,command,alias = []):
         self._commands[command] = func
+        for i in alias:
+            self._commands[i] = func
         
     def _cmd_run(self):
         try:
             self._handle_command(self.ask_input("$"))
         except Exception as e:
-            self._print_error(str(e.__class__.__name),e)
+            self._print_error(str(e.__class__.__name__),str(e))
     
     def _print_header(self):
         if self._colored:print("\033[H\033[J",end="")
@@ -192,16 +208,13 @@ class Commands:
         
 if __name__ == "__main__":
     # For tests only
-    def test():
-        print("Hello")
-    def test2(args):
-        print("Hello",args)
-    def _exit():
+    def test(subcmds,settings):
+        print("Hello",subcmds,settings)
+    def _exit(subcmds,settings):
         exit()
-    c = Console()
+    c = Console(DummyParent)
     c._print_header()
     c._register_command(test,"test")
-    c._register_command(test2,"test2",["args"])
-    c._register_command(_exit,"exit")
+    c._register_command(_exit,"exit",["quit","e"])
     while 1:
         c._cmd_run()

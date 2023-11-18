@@ -3,21 +3,28 @@
     __init__.py file
 
     Load all core modules
-
+    and init the panel class
 """
 
+################################### Base
+import libtmux
+import sys
+import os
+################################### Core
+from .__version__ import BANNER, _BANNER_SIZE, VERSION, TYPE
 from .logger import Logger
 from .config import ConfFile
 from .wizard import Wizard
 from .events import Events
 from .storify import Storify
+################################### Control
 from .control.console import Console, Commands
 from .control.dashboard import Dashboard
+from .control.remote import RemoteControl
+################################### Features
 from .mc import *
-from .__version__ import *
-import libtmux
-import sys
-import os
+###################################
+
 
 class Panel:
     def __init__(self,args):

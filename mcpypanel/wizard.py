@@ -102,7 +102,8 @@ class Wizard:
         self.config["accounts"] = dict(admin=dict(perms="admin",password=pass_hash))
         
         
-        
+        ############################################
+        self.console._fancy_print()
         
         
         
