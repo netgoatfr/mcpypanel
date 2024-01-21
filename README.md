@@ -28,7 +28,7 @@ or ***join the discord*** and open a post in **#features-request**
 ### Main branch
 ```bash
     # Install the latest copy of mcpypanel (Dependencies are auto-installed)
-    pip install https://github.com/aGoatdev/mcpypanel/archive/main.zip
+    pip install https://github.com/netgoatfr/mcpypanel/archive/main.zip
 
     # If the command above warn you with a path error, run this:
     export PATH=$PATH:~/.local/bin
