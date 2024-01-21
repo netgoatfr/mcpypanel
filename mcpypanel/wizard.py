@@ -50,9 +50,11 @@ class Wizard:
             if not d:
                 self._abort_installation()
             path = self._check_aborting_from_input(self.console.ask_input(f"Enter the Full Path of the directory you want McPyPanel to install this instance in:"))
-
-
-
+        else:
+            path = os.getcwd()
+        
+        
+        os.mkdir(os.join(path,"pipes"))
         
         d = self.console.ask_yes_no("Do you allow McPyPanel to use colors in the console ?")
         self._check_aborting_from_input(d)
@@ -87,23 +89,22 @@ class Wizard:
 
         
         while 1:
-            password = self._check_aborting_from_input(self.console.ask_input("Enter the default password for the admin account"))
+            password = self._check_aborting_from_input(self.console.ask_input("Enter the default password for the \"admin\" account"))
             if len(password) < 8:
                 self.console._print_error("PasswordError","Password must be at least 8 char long.")
                 continue
             retyped_password = self._check_aborting_from_input(self.console.ask_input("Please retype the password"))
             if retyped_password == password:
                 break
-            self.console._print_error("PasswordError","The Passwords dosen't match")
-
-        
+            self.console._print_error("PasswordError","The Passwords dosen't match")        
         self.console._fancy_print("Valid password.")
         pass_hash = hashlib.md5(password.encode()).hexdigest() # Hash the password
         self.config["accounts"] = dict(admin=dict(perms="admin",password=pass_hash))
         
         
+        
         ############################################
-        self.console._fancy_print()
+        #self.console._fancy_print()
         
         
         

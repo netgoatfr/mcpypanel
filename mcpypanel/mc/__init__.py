@@ -36,6 +36,7 @@ class Server:
         self.parent = parent
         self.path = path
         self.jar_path = self.path+"/"+jar_name+".jar"
+        self.pid_db = self.parent.getDB("pids")
         if not os.path.exists(self.jar_path):
             self.log.fatal("Jar file not found.")
             self._found = False
@@ -62,11 +63,8 @@ class Server:
             if w.name == name:
                 return w
     def start(self):
-        if self.parent.tmux_serv.has_session("server."+self.servername):
-            self.log.error("Server is already running!")
-            return
-        self.session = self.parent.tmux_serv.new_session("server."+self.servername)
-        self.session.cmd("java -jar "+self.parent.config["per-server-java-args"] or ""+" "+self.jar_path)
+        self._ckeck_pid_running("mcpypanel-server-"+self.servername)
+        java -jar "+self.parent.config["per-server-java-args"] or ""+" "+self.jar_path)
     def stop(self):
         if not self.parent.tmux_serv.has_session("server."+self.servername):
             self.log.eror("Server is not running!")
