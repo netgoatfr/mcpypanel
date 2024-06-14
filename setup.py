@@ -9,13 +9,13 @@ with open('requirements.txt') as f:
 setup(
     name='mcpypanel',
     version=__version__,
-    description="A panel for minecraft servers and proxy, doc at https://github.com/aGoatdev/mcpypanel",
+    description="A panel for minecraft servers and proxy, doc at https://github.com/netgoatfr/mcpypanel",
     license='CC BY-SA',
-    author="aGoatdev",
-    author_email="crazytekno.py@gmail.com",
+    author="netgoatfr",
+    author_email="netgoatfr@gmail.com",
     packages=find_packages(include=['mcpypanel', 'mcpypanel*']),
     long_description=open('README.md').read(),
-    url="https://github.com/aGoatdev/mcpypanel", # Project Url
+    url="https://github.com/netgoatfr/mcpypanel", # Project Url
     entry_points={
         'console_scripts': [
             'mcpypanel = mcpypanel:main',
