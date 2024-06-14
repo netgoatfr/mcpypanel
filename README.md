@@ -1,5 +1,5 @@
 # McPyPanel
-###Open-source panel/wrapper for a minecraft Server / Proxy, writen with python.
+### Open-source panel/wrapper for a minecraft Server / Proxy, writen with python.
 **Admins, Servers owners or people wanting simply a minecraft server: This will help you a lot and will win you a lot of time!**
 
 You can easily control *every* aspect of a server  / group of server (proxy).
