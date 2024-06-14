@@ -52,6 +52,3 @@ planned features.
    - [ ] Auto backup
      - [ ] Backup auto delete
      - [ ] Backup auto applied when crash
-
-## Done:
-
