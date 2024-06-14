@@ -22,6 +22,7 @@ planned features.
  - [ ]  Library
    - [ ] Logging 
      - [ ] Log rotating
+     - [x] Core logging
    - [x] Storing (Database)
    - [x] Config
    - [x] Events
